@@ -87,9 +87,9 @@ class Board:
         #     50% Gross
 
         row_values = self.get_board_data()
-        all_values = [str(value) for row_value in row_values for value in row_value if value not in ["X", "O"]]
+        unplayed_squares = [str(value) for row_value in row_values for value in row_value if value not in ["X", "O"]]
 
-        return all_values
+        return unplayed_squares
     
     def get_board_data(self):
         return [row.get_values() for row in self.rows]
