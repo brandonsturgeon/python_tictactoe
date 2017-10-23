@@ -243,7 +243,7 @@ class Game:
                     self.check_for_winner()
 
                     # This is a dumb check for whether or not a winner has been chosen,
-                    # we dont' want to clear the victory message!
+                    # we don't want to clear the victory message!
                     if self.winner is None:
                         self.next_player = "opponent"
                         self.render_screen()
@@ -258,7 +258,7 @@ class Game:
                 self.check_for_winner()
 
                 # This is a dumb check for whether or not a winner has been chosen,
-                # we dont' want to clear the victory message!
+                # we don't want to clear the victory message!
                 if self.winner is None:
                     self.next_player = "player"
                     self.render_screen()
