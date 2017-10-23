@@ -165,7 +165,7 @@ class Game:
         self.winner = None
         self.help_text = "Simply enter the number of the square you want to place your letter on"
         self.next_player = "player"
-        self.invalid_commands = 0
+        self.invalid_command_count = 0
 
         self.main()
 
@@ -185,7 +185,7 @@ class Game:
 
     def print_invalid_command_message(self):
         # Print help message every 3 invalid commands
-        should_print_help = self.invalid_commands % 3 == 0
+        should_print_help = self.invalid_command_count % 3 == 0
 
         print ""
         print "Invalid Command"
@@ -249,7 +249,7 @@ class Game:
                         self.render_screen()
 
                 else:
-                    self.invalid_commands += 1
+                    self.invalid_command_count += 1
                     self.print_invalid_command_message()
 
             # Opponent
