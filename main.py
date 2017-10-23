@@ -54,7 +54,7 @@ class BoardRow:
 class Board:
     def __init__(self, player_letters):
 
-        # I opted to use a class system instead of the standard array
+        # I opted to use a class system instead of the traditional array
         # of strings because it feels much cleaner to me
 
         self.letters = player_letters
@@ -82,7 +82,20 @@ class Board:
             "8": self.bottom.set_middle,
             "9": self.bottom.set_right
         }
+    
+    def get_board_data(self):
+        return [row.get_values() for row in self.rows]
 
+    def get_diagonals(self):
+        top_to_bottom = [self.top.left, self.middle.middle, self.bottom.right] 
+        bottom_to_top = [self.bottom.left, self.middle.middle, self.top.right]
+
+        diagonals = [top_to_bottom, bottom_to_top]
+
+        return diagonals
+
+    def get_horizontals(self):
+        return self.get_board_data()
 
     def get_unplayed_squares(self):
         # Recipe for list comprehension:
@@ -94,12 +107,6 @@ class Board:
 
         return unplayed_squares
     
-    def get_board_data(self):
-        return [row.get_values() for row in self.rows]
-
-    def get_horizontals(self):
-        return self.get_board_data()
-    
     def get_verticals(self):
         left_column   = [self.top.left,   self.middle.left,   self.bottom.left  ]
         middle_column = [self.top.middle, self.middle.middle, self.bottom.middle]
@@ -108,14 +115,6 @@ class Board:
         verticals = [left_column, middle_column, right_column]
 
         return verticals
-    
-    def get_diagonals(self):
-        top_to_bottom = [self.top.left, self.middle.middle, self.bottom.right] 
-        bottom_to_top = [self.bottom.left, self.middle.middle, self.top.right]
-
-        diagonals = [top_to_bottom, bottom_to_top]
-
-        return diagonals
 
     def check_for_win(self):
         horizontals = self.get_horizontals()
@@ -176,28 +175,14 @@ class Game:
         _ = os.system("cls")
         _ = os.system("clear")
 
-    def render_screen(self):
-        self.clear_screen()
-        self.board.render()
-
-    def print_help_message(self):
-        print self.help_text
-
-    def print_invalid_command_message(self):
-        # Print help message every 3 invalid commands
-        should_print_help = self.invalid_command_count % 3 == 0
-
-        print ""
-        print "Invalid Command"
-        print ""
-
-        if should_print_help:
-            self.print_help_message()
-
     def get_winner_from_letter(self, letter):
         for player, player_letter in self.letters.iteritems():
             if player_letter == letter:
                 return player
+
+    def get_valid_moves(self):
+        unplayed_squares = self.board.get_unplayed_squares()
+        return unplayed_squares
 
     def check_for_winner(self):
         winning_letter = self.board.check_for_win()
@@ -216,9 +201,23 @@ class Game:
             self.render_screen()
             print "{} has won!".format(self.winner.capitalize())
 
-    def get_valid_moves(self):
-        unplayed_squares = self.board.get_unplayed_squares()
-        return unplayed_squares
+    def print_help_message(self):
+        print self.help_text
+
+    def print_invalid_command_message(self):
+        # Print help message every 3 invalid commands
+        should_print_help = self.invalid_command_count % 3 == 0
+
+        print ""
+        print "Invalid Command"
+        print ""
+
+        if should_print_help:
+            self.print_help_message()
+
+    def render_screen(self):
+        self.clear_screen()
+        self.board.render()
 
     def main(self):
 
