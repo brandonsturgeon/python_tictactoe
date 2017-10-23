@@ -194,7 +194,7 @@ class Game:
 
     def get_winner_from_letter(self, letter):
         for player, player_letter in self.letters.iteritems():
-            if letter == player_letter:
+            if player_letter == letter:
                 return player
 
     def check_for_winner(self):
