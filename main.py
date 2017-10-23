@@ -17,6 +17,7 @@ import random
 # - Improve user interface
 #   - O's look a bit like 0's which is confusing when using number placeholders
 #   - I would also replace all of the numbers with "_" instead. It looks much better.
+#   - I would update the error messages too. They shouldn't pile up, they should stay in one place.
 #
 # - Add tests
 #
