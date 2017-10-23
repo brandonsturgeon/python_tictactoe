@@ -19,6 +19,7 @@ import random
 #   - I would also replace all of the numbers with "_" instead. It looks much better.
 #   - I would update the error messages too. They shouldn't pile up, they should stay in one place.
 #   - "Invalid Command" error should be improved to reflect the multiple error states (can't place in an already used square, or unrecognized command)
+#   - Maybe I could reformat the numbers so they mimic the keyboard's numpad, making the play experience more intuitive
 #
 # - Add tests
 #
