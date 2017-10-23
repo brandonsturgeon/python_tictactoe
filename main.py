@@ -27,6 +27,8 @@ import random
 #
 # - I don't like how both turns happen seemingly simultaneously,
 #   I would find some way (perhaps a delay or something) to make it appear more interactive
+#
+# - Refine the victory conditions, they're a little messy right now.
 
 class BoardRow:
     def __init__(self, defaults):
