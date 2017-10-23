@@ -92,7 +92,6 @@ class Board:
     def get_board_data(self):
         return [row.get_values() for row in self.rows]
 
-
     def get_horizontals(self):
         return self.get_board_data()
     
