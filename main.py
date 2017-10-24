@@ -162,7 +162,7 @@ class Game:
         self.opponent = Opponent(self.letters["opponent"])
         self.winner = None
         self.help_text = "Simply enter the number of the square you want to place your letter on"
-        self.next_player = "player"
+        self.next_player = random.choice(self.letters.keys())
         self.invalid_command_count = 0
 
         self.main()
