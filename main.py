@@ -182,7 +182,7 @@ class Game:
         # Assign os.system output to an unused var to avoid it's output (0)
         # appearing in console. Using cls and clear for compatability
         _ = os.system("cls")
-        _ = os.system("clear")
+        # _ = os.system("clear")
 
     def get_winner_from_letter(self, letter):
         for player, player_letter in self.letters.iteritems():
