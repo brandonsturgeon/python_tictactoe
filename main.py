@@ -81,6 +81,11 @@ class Board:
             "8": self.bottom.set_middle,
             "9": self.bottom.set_right
         }
+
+        self.color_map = {
+            "player":  '\x1b[0;32;40m',
+            "opponent": '\x1b[0;31;40m'
+        }
     
     def get_board_data(self):
         return [row.get_values() for row in self.rows]
@@ -102,7 +107,7 @@ class Board:
         #     50% Gross
 
         row_values = self.get_board_data()
-        unplayed_squares = [str(value) for row_value in row_values for value in row_value if value not in ["X", "O"]]
+        unplayed_squares = [str(value) for row_value in row_values for value in row_value if value not in self.letters.values()]
 
         return unplayed_squares
     
@@ -139,6 +144,11 @@ class Board:
         rows = [row.render() for row in self.rows]
         rendered_board = "\n".join(rows)
 
+        for player, letter in self.letters.iteritems():
+           colored_letter = self.color_map[player] + letter + '\x1b[0m'
+
+           rendered_board = rendered_board.replace(letter, colored_letter)
+
         print rendered_board
 
 class Opponent:
@@ -158,7 +168,7 @@ class Game:
             "player": "X",
             "opponent": "O"
         }
-        self.board = Board(self.letters.values())
+        self.board = Board(self.letters)
         self.opponent = Opponent(self.letters["opponent"])
         self.winner = None
         self.help_text = "Simply enter the number of the square you want to place your letter on"
